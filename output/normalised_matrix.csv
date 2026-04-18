@@ -1,0 +1,9 @@
+river,state,water_quality_index,physical_ecological,waste_load_intensity,governance_access,community_engagement,seasonality_factor
+Kham River (Reference),Maharashtra,0.6107668474051124,1.0,1.0,1.0,1.0,1.0
+Nag River,Maharashtra,0.743996901626646,0.3,1.0,0.857142857142857,0.5,1.0
+Mula-Mutha River,Maharashtra,0.4008520526723471,0.5,0.7954545454545455,0.857142857142857,0.3,0.0
+Cooum River,Tamil Nadu,1.0,0.7,1.0,0.0,0.0,0.42857142857142866
+Sukhna Choe,Punjab/Haryana,0.19442292796281962,0.45,0.3636363636363635,0.42857142857142866,0.25,0.5714285714285713
+Shivna River,Maharashtra,0.0,0.0,0.0,0.857142857142857,0.0,1.0
+"Sabarmati Tributaries (Khari, Meshvo)",Gujarat,0.832300542215337,0.2,1.0,0.0,0.0,1.0
+Rispana-Bindal,Uttarakhand,0.32029434546862906,0.65,0.5681818181818182,0.0,0.25,0.7142857142857143
