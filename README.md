@@ -72,13 +72,16 @@ Where $q_j$ is the quality rating for sub-parameter $j$, and $w_j$ is the sub-we
 To ensure robustness against scale artifacts, we utilize three distinct mathematical distance/similarity metrics in $\mathbb{R}^6$:
 
 1. **Weighted Euclidean Distance (ED):** Measures the straight-line spatial distance between parameter vectors.
-   $$ ED(A, B) = \sqrt{ \sum_{i=1}^{6} w_i \times (P_{A,i} - P_{B,i})^2 } $$
+
+$$ ED(A, B) = \sqrt{ \sum_{i=1}^{6} w_i \times (P_{A,i} - P_{B,i})^2 } $$
 
 2. **Cosine Similarity (CS):** Measures the angular cosine between the vectors, isolating the structural shape of the pollution profile independent of magnitude.
-   $$ CS(A, B) = \frac{P_A \cdot P_B}{\|P_A\| \times \|P_B\|} $$
+
+$$ CS(A, B) = \frac{P_A \cdot P_B}{\|P_A\| \times \|P_B\|} $$
 
 3. **Weighted Manhattan Distance (MD):** Measures the absolute block distance, robust to outlier parameters.
-   $$ MD(A, B) = \sum_{i=1}^{6} w_i \times |P_{A,i} - P_{B,i}| $$
+
+$$ MD(A, B) = \sum_{i=1}^{6} w_i \times |P_{A,i} - P_{B,i}| $$
 
 ### 4.3 Composite Replicability Index (RI)
 The distances are normalized ($ED_{norm}$, $MD_{norm}$) to a $[0, 1]$ scale based on the maximum observed deviation. The final Replicability Index integrates these metrics:
