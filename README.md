@@ -66,6 +66,7 @@ The replicability matching is formulated as a multi-metric similarity problem, c
 Each of the six parameters  $P_i$  is normalized to a  $[0, 1]$  scale. For Water Quality, we compute a modified National Sanitation Foundation Water Quality Index (NSF-WQI), calibrated against Central Pollution Control Board (CPCB) Class B standards.
 
 $$ WQI = \sum_{j=1}^{n} (w_j \times q_j) $$
+
 Where $q_j$ is the quality rating for sub-parameter  $j$ , and  $w_j$  is the sub-weight. The WQI is subsequently inverted so that a higher value represents greater degradation (i.e., a closer match to the Kham baseline).
 
 ### 4.2 Multi-Metric Similarity Functions
