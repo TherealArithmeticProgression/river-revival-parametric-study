@@ -1,166 +1,158 @@
-# A Parametric Analysis of the Kham Restoration and Its Replicability Across Indian Waterways
+# Kham River Restoration – Parametric Analysis
+
+A data-driven study that asks: **which Indian rivers can realistically replicate the Kham River restoration model?**
+
+---
 
 ## Abstract
-The Kham River, an intermittent waterway flowing through Chhatrapati Sambhajinagar (Aurangabad), Maharashtra, suffered from severe ecological degradation, legacy waste dumping, and sewage pollution. In 2020, a multi-stakeholder coalition initiated a holistic restoration project that transformed the degraded channel into a vibrant ecological corridor. This research project conducts a comprehensive parametric analysis of the Kham River restoration model. The study has two primary objectives: first, to systematically identify and quantify the key parameters that facilitated the successful restoration of the Kham River; and second, to establish a mathematical framework to evaluate the replicability of this model across other polluted, seasonal Indian waterways. Using a multi-metric similarity analysis approach (incorporating Cosine Similarity, Euclidean Distance, and Manhattan Distance), we formulate a Composite Replicability Index (RI) to rank candidate rivers. Our findings indicate that the Nag River (Maharashtra) presents the strongest comparator for immediate application of the Kham methodologies.
+
+The Kham River in Chhatrapati Sambhajinagar (Aurangabad), Maharashtra, was restored from a heavily polluted drain into a vibrant ecological corridor through a public-private-civil society partnership. This project builds a simple parametric scoring system across six dimensions — water quality, physical/ecological degradation, waste load, governance, community engagement, and seasonality — then uses three similarity metrics (Cosine Similarity, Euclidean Distance, Manhattan Distance) to rank seven candidate rivers by their Replicability Index (RI).
+
+**Key Finding:** The Nag River (Nagpur, Maharashtra) scores highest with an RI of ~0.72, making it the strongest candidate for directly applying Kham methodologies.
 
 ---
 
 ## Table of Contents
-1. [Introduction](#1-introduction)
-2. [Objective 1: Key Parameters of the Kham Restoration](#2-objective-1-key-parameters-of-the-kham-restoration)
-3. [Objective 2: Establishing Replicability](#3-objective-2-establishing-replicability)
-4. [Mathematical Methodology](#4-mathematical-methodology)
-5. [Candidate Rivers Evaluated](#5-candidate-rivers-evaluated)
-6. [Results & Discussion](#6-results--discussion)
-7. [Project Installation & Usage](#7-project-installation--usage)
-8. [References](#8-references)
+1. [The Six Parameters](#the-six-parameters)
+2. [How the Scoring Works](#how-the-scoring-works)
+3. [Results](#results)
+4. [Charts Produced](#charts-produced)
+5. [Running the Notebook](#running-the-notebook)
+6. [References](#references)
 
 ---
 
-## 1. Introduction
-Historically, the Kham River functioned as a vital ecological asset and drinking water source via the ancient *Neher* aqueduct system. However, rapid urbanization, unregulated sand mining, and the daily diversion of untreated municipal sewage precipitated a drastic decline in water quality and riparian health. The waterway effectively became a *nallah* (drain), exacerbating monsoon flooding and posing significant public health risks (Shin et al., 2024; Karhade et al., 2020).
+## The Six Parameters
 
-The Kham River Restoration Initiative, spearheaded by the Chhatrapati Sambhajinagar Municipal Corporation alongside Varroc Industries and EcoSattva Environmental Solutions, demonstrated that even severely degraded, intermittent urban rivers can be rejuvenated through coordinated public-private-civil society partnerships. This research abstracts the successful interventions into measurable parameters to guide future river rejuvenation projects across India.
+Each river is scored on six dimensions, each weighted by importance:
 
----
+| # | Parameter | Weight | What It Measures |
+|---|-----------|--------|-----------------|
+| 1 | Water Quality Index (WQI) | **25%** | Composite of DO, BOD, COD, TDS, TSS, Fecal Coliform vs CPCB limits |
+| 2 | Physical/Ecological Degradation | 15% | Encroachment, siltation, riparian loss |
+| 3 | Waste Load Intensity | 15% | BOD and COD exceedance vs Kham pre-restoration baseline |
+| 4 | Governance & Institutional Access | **20%** | PPP readiness, existing initiatives |
+| 5 | Community Engagement Potential | 10% | Civic identity, cultural memory |
+| 6 | Seasonality Factor | 15% | Flow intermittency match with Kham |
 
-## 2. Objective 1: Key Parameters of the Kham Restoration
-Through extensive literature review and data scraping of institutional reports, environmental assessments, and press releases, we identified six fundamental parametric dimensions that anchored the Kham restoration.
+### Kham Pre-Restoration Baseline (the "problem profile" to match)
 
-### 2.1 Water Quality Metrics (Weight: 25%)
-Water quality serves as the primary indicator of river health. The pre-restoration baseline revealed:
-- **Dissolved Oxygen (DO):** 2.1 mg/L (critically low).
-- **Biochemical Oxygen Demand (BOD):** 48.0 mg/L (indicating severe organic pollution).
-- **Chemical Oxygen Demand (COD):** 162.0 mg/L.
-- **Total Dissolved Solids (TDS):** 1450.0 mg/L.
-- **Total Suspended Solids (TSS):** 380.0 mg/L.
-- **Fecal Coliform:** 9200 MPN/100mL (presence of *E. coli*).
-
-### 2.2 Physical and Ecological Parameters (Weight: 15%)
-Restoration priorities heavily emphasized morphological and biological rejuvenation. Interventions included riverbank stabilization (pitching), systematic dredging, desilting, and the extensive plantation of native flora along the riparian edge to combat erosion and mitigate monsoon flooding.
-
-### 2.3 Waste Load Parameters (Weight: 15%)
-Legacy waste accumulation was a defining challenge. The project addressed this by removing over 100,000 square meters of solid waste, eliminating 110 Garbage Vulnerable Points (GVPs), diverting 5 million liters of raw sewage daily, and establishing specialized Material Recovery Facilities.
-
-### 2.4 Governance and Institutional Parameters (Weight: 20%)
-The success hinged on a robust Public-Private-Civil Society (PPP) model. The coalition included the municipal corporation, industrial partners (e.g., Varroc Foundation), startups (EcoSattva), and the Cantonment Board. Furthermore, the initiative leveraged technology, such as the BOTRAM application, for real-time monitoring.
-
-### 2.5 Community Engagement Index (Weight: 10%)
-Transforming public perception from seeing the river as a sewer to recognizing it as a living entity was crucial. Over 1 million citizens participated in waterfront events. The cultural revival was marked by the "Kham Song" and the rebranding of the waterway as *Apli Kham* (Our Kham).
-
-### 2.6 Seasonality Factor (Weight: 15%)
-The Kham is an intermittent, rain-fed river. It swells during the monsoon and reduces to a trickle in dry months. Strategies tailored to this seasonality are fundamentally different from those required for perennial, glacier-fed rivers, making seasonality a critical parameter for matching.
+| Parameter | Kham Value | CPCB Limit | Status |
+|-----------|-----------|------------|--------|
+| DO | 2.1 mg/L | ≥ 5.0 mg/L | Critically low |
+| BOD | 48.0 mg/L | ≤ 3.0 mg/L | 16× over limit |
+| COD | 162.0 mg/L | ≤ 150.0 mg/L | Over limit |
+| TDS | 1450.0 mg/L | ≤ 500.0 mg/L | 3× over limit |
+| TSS | 380.0 mg/L | ≤ 100.0 mg/L | 3.8× over limit |
+| Fecal Coliform | 9200 MPN/100mL | ≤ 500 | 18× over limit |
 
 ---
 
-## 3. Objective 2: Establishing Replicability
-To identify which Indian rivers could most effectively adopt the Kham methodologies, we analyzed seven candidate rivers exhibiting similar baseline degradation: Nag River, Mula-Mutha, Cooum, Sukhna Choe, Shivna, Sabarmati Tributaries, and Rispana-Bindal. 
+## How the Scoring Works
 
-The replicability matching is formulated as a multi-metric similarity problem, comparing the parametric profile of each candidate river against the Kham pre-restoration baseline.
+### Step 1 – Compute Raw Scores
+Each river gets a score between 0 and 1 (or 0–100 for WQI) on each of the six dimensions using the data embedded directly in the notebook.
 
----
+### Step 2 – Normalise (Min-Max)
+$$P_i^{norm} = \frac{P_i - P_{min}}{P_{max} - P_{min}}$$
 
-## 4. Mathematical Methodology
+WQI is inverted first (`100 - WQI`) so that higher pollution → higher score, consistent with matching the Kham's degraded state.
 
-### 4.1 Parameter Normalization
-Each of the six parameters  $P_i$  is normalized to a  $[0, 1]$  scale. For Water Quality, we compute a modified National Sanitation Foundation Water Quality Index (NSF-WQI), calibrated against Central Pollution Control Board (CPCB) Class B standards.
+### Step 3 – Three Similarity Metrics
 
-$$ WQI = \sum_{j=1}^{n} (w_j \times q_j) $$
+**Euclidean Distance:**
+$$ED(A, B) = \sqrt{\sum_{i=1}^{6} w_i \cdot (P_{A,i} - P_{B,i})^2}$$
 
-Where $q_j$ is the quality rating for sub-parameter  $j$ , and  $w_j$  is the sub-weight. The WQI is subsequently inverted so that a higher value represents greater degradation (i.e., a closer match to the Kham baseline).
+**Cosine Similarity:**
+$$CS(A, B) = \frac{P_A \cdot P_B}{\|P_A\| \times \|P_B\|}$$
 
-### 4.2 Multi-Metric Similarity Functions
-To ensure robustness against scale artifacts, we utilize three distinct mathematical distance/similarity metrics in $\mathbb{R}^6$ :
+**Manhattan Distance:**
+$$MD(A, B) = \sum_{i=1}^{6} w_i \cdot |P_{A,i} - P_{B,i}|$$
 
-1. **Weighted Euclidean Distance (ED):** Measures the straight-line spatial distance between parameter vectors.
+### Step 4 – Composite Replicability Index
+$$RI = 0.40 \times CS + 0.35 \times (1 - ED_{norm}) + 0.25 \times (1 - MD_{norm})$$
 
-$$ ED(A, B) = \sqrt{ \sum_{i=1}^{6} w_i \times (P_{A,i} - P_{B,i})^2 } $$
-
-2. **Cosine Similarity (CS):** Measures the angular cosine between the vectors, isolating the structural shape of the pollution profile independent of magnitude.
-
-$$ CS(A, B) = \frac{P_A \cdot P_B}{\|P_A\| \times \|P_B\|} $$
-
-3. **Weighted Manhattan Distance (MD):** Measures the absolute block distance, robust to outlier parameters.
-
-$$ MD(A, B) = \sum_{i=1}^{6} w_i \times |P_{A,i} - P_{B,i}| $$
-
-### 4.3 Composite Replicability Index (RI)
-The distances are normalized ($ED_{norm}$, $MD_{norm}$) to a $[0, 1]$ scale based on the maximum observed deviation. The final Replicability Index integrates these metrics:
-
-$$ RI = \alpha(CS) + \beta(1 - ED_{norm}) + \gamma(1 - MD_{norm}) $$
-
-Where coefficients are defined as $\alpha = 0.40$, $\beta = 0.35$, and $\gamma = 0.25$. 
-An $RI$ approaching $1.0$ designates a pristine candidate for the Kham framework.
+RI closer to 1.0 = stronger match with the Kham model.
 
 ---
 
-## 5. Candidate Rivers Evaluated
-Extensive secondary data extraction (via CPCB reports, NGT directives, and academic journals) was performed for the following rivers:
-- **Nag River (Maharashtra):** Severe sewage loading, seasonal flow, high institutional readiness.
-- **Mula-Mutha River (Maharashtra):** High BOD load, active encroachment, currently under JICA-funded abatement.
-- **Sukhna Choe (Punjab/Haryana):** Seasonal rivulet, heavy siltation, untreated sewage discharge.
-- **Rispana-Bindal (Uttarakhand):** Himalayan seasonal streams, severe urban encroachment.
-- **Cooum River (Tamil Nadu):** Urban estuary, massive legacy waste, high tidal influence.
-- **Sabarmati Tributaries (Gujarat):** Semi-arid, highly industrialized effluents.
-- **Shivna River (Maharashtra):** Similar basin to Kham, but vastly different baseline quality.
-
----
-
-## 6. Results & Discussion
-
-Our algorithmic pipeline successfully generated the Replicability Index ranking.
+## Results
 
 | Rank | River | State | RI Score | Category |
 |------|-------|-------|----------|----------|
-| 1 | **Nag River** | Maharashtra | 0.7168 | Strong Match |
-| 2 | **Mula-Mutha River** | Maharashtra | 0.5136 | Partial Match |
-| 3 | **Sukhna Choe** | Punjab/Haryana | 0.4858 | Partial Match |
-| 4 | **Rispana-Bindal** | Uttarakhand | 0.4383 | Partial Match |
-| 5 | **Sabarmati Tributaries** | Gujarat | 0.3611 | Low Match |
-| 6 | **Cooum River** | Tamil Nadu | 0.3480 | Low Match |
-| 7 | **Shivna River** | Maharashtra | 0.2433 | Low Match |
+| 1 | **Nag River** | Maharashtra | ~0.72 | Strong Match |
+| 2 | Mula-Mutha River | Maharashtra | ~0.51 | Partial Match |
+| 3 | Sukhna Choe | Punjab/Haryana | ~0.49 | Partial Match |
+| 4 | Rispana-Bindal | Uttarakhand | ~0.44 | Partial Match |
+| 5 | Sabarmati Tributaries | Gujarat | ~0.36 | Low Match |
+| 6 | Cooum River | Tamil Nadu | ~0.35 | Low Match |
+| 7 | Shivna River | Maharashtra | ~0.24 | Low Match |
 
-**Conclusion:** The **Nag River** emerges as the definitive candidate for replicating the Kham River methodology. It exhibits a phenomenal Cosine Similarity of 0.9312 to the Kham baseline. Both rivers share a semi-arid tropical climate, seasonal/intermittent flow characteristics, and a degradation profile overwhelmingly dominated by untreated domestic sewage rather than complex industrial chemical effluents. Furthermore, Nagpur possesses a comparable institutional framework capable of marshaling a PPP model similar to the EcoSattva-Varroc-Municipal collaboration seen in Aurangabad.
+The **Nag River** shares Nagpur's semi-arid tropical climate, seasonal intermittent flow, and a pollution profile dominated by untreated domestic sewage — nearly identical to the Kham's pre-restoration state.
 
 ---
 
-## 7. Project Installation & Usage
+## Charts Produced
 
-This repository contains the complete Python source code used to compute the RI, perform the parameter normalizations, and generate the publication-quality graphs.
+All charts are saved to the `output/` folder when you run the notebook. Here is what each one shows:
+
+### 1. `line_pre_post.png` – Pre vs Post Restoration (Line Chart)
+A line chart comparing Kham's water quality parameters **before and after** restoration. Shows how DO, BOD, COD, TDS, and TSS changed after intervention. Clearly illustrates the dramatic improvement in water quality.
+
+### 2. `hist_bod.png` – BOD Distribution (Histogram)
+A histogram of BOD values across all rivers including Kham. The CPCB limit (3 mg/L) is shown as a red dashed line. Reveals that **every single river** is far above the safe limit — illustrating the scale of India's river pollution problem.
+
+### 3. `ri_ranking.png` – Replicability Index Ranking (Horizontal Bar)
+A colour-coded horizontal bar chart ranking all candidate rivers by their RI score. Bars are coloured by match category (green = Strong, orange = Moderate, red = Partial, pink = Low). Threshold lines at 0.55 and 0.70 are shown for reference.
+
+### 4. `weights_pie.png` – Parameter Weights (Donut Pie Chart)
+A donut-style pie chart showing the expert-assigned weight for each of the six parametric dimensions. Water Quality (25%) and Governance (20%) dominate the scoring.
+
+### 5. `cosine_line.png` – Cosine Similarity Line Chart
+A line chart showing each river's cosine similarity to the Kham parametric profile. Rivers with a cosine similarity close to 1.0 have the most similar "shape" of degradation, meaning the same types of problems — not just the same severity.
+
+### 6. `hist_tds.png` – TDS Distribution (Histogram)
+A histogram of Total Dissolved Solids across all rivers with the CPCB limit (500 mg/L) marked. Shows how dissolved salt/mineral loading varies and which rivers have the most extreme TDS values (Sabarmati tributaries and Cooum stand out).
+
+### 7. `category_pie.png` – Match Category Distribution (Pie Chart)
+A simple pie chart showing how many rivers fall into each replicability category. Out of seven candidates, only one achieves "Strong Match" status — showing how rare a truly Kham-like river profile is.
+
+### 8. `metrics_line.png` – Multi-Metric Comparison (Line Chart)
+Overlays three scores — RI, Cosine Similarity, and 1-Euclidean Distance — for all candidate rivers on a single line chart. Useful for seeing where the three metrics agree or diverge, validating the robustness of the composite RI.
+
+---
+
+## Running the Notebook
 
 ### Prerequisites
 - Python 3.9+
-- The environment requires `numpy`, `pandas`, `matplotlib`, `seaborn`, `scipy`, and `tabulate`.
+- `numpy`, `pandas`, `matplotlib`
 
 ### Installation
-Clone the repository and install dependencies:
 ```bash
 git clone https://github.com/your-org/river-revival-parametric-study.git
 cd river-revival-parametric-study
 pip install -r requirements.txt
 ```
 
-### Execution
-To run the full analysis pipeline, generate the metrics, and plot the figures:
+### Run
+Open the notebook in Jupyter or VS Code:
 ```bash
-python main.py
+jupyter notebook analysis.ipynb
 ```
-To export the matrices to CSV format without regenerating plots:
-```bash
-python main.py --export-csv --no-plots
-```
-All outputs, including high-resolution graphs (Radar charts, Heatmaps) and CSV files, are saved automatically to the `output/` directory.
+
+Then run all cells (`Kernel → Restart & Run All`). Outputs are saved to `output/`.
+
+> **Note:** All data is embedded directly in the notebook — no external JSON files are needed.
 
 ---
 
-## 8. References
-- Brown, R. M., McClelland, N. I., Deininger, R. A., & Tozer, R. G. (1970). A Water Quality Index—Do We Dare?. *Water and Sewage Works*, 117(10), 339-343.
-- Central Pollution Control Board (CPCB). (2017). *Guidelines for Water Quality Monitoring*. Ministry of Environment, Forest and Climate Change, Government of India.
-- Dhagey, J. (2022). Apli Kham: Ecological river restoration as placemaking. *Question of Cities*.
-- Joint Action for Water (JAW). (2024). By Restoring India's Kham River, a City Revives Its Cultural Legacy and Improves Local Livelihoods.
-- Karhade, V. R., et al. (2020). Environmental Impact Assessment of Anthropogenic Activities and Conceptual Restoration Strategy for Kham River in Aurangabad, India. *Current World Environment*, 15(3). DOI: [10.12944/CWE.15.3.31](http://dx.doi.org/10.12944/CWE.15.3.31)
-- Millennium Post. (2025). *Reviving India’s Rivers*. (Opinion piece covering the Nexus of Good Annual Award).
-- Padme, Y. L., & Khobragade, K. S. (2015). Restoration of Kham River: Challenges and Strategies. *International Journal of Chemical and Physical Sciences*, 4(4).
+## References
+- Brown, R. M., et al. (1970). A Water Quality Index—Do We Dare? *Water and Sewage Works*, 117(10), 339–343.
+- Central Pollution Control Board (CPCB). (2017). *Guidelines for Water Quality Monitoring*. MoEFCC, Govt. of India.
+- Dhagey, J. (2022). Apli Kham: Ecological River Restoration as Placemaking. *Question of Cities*.
+- Joint Action for Water (JAW). (2024). By Restoring India's Kham River, a City Revives Its Cultural Legacy.
+- Karhade, V. R., et al. (2020). Environmental Impact Assessment of Anthropogenic Activities and Conceptual Restoration Strategy for Kham River. *Current World Environment*, 15(3). DOI: [10.12944/CWE.15.3.31](http://dx.doi.org/10.12944/CWE.15.3.31)
+- Millennium Post. (2025). *Reviving India's Rivers*.
 - Shin, J., Salunkhe, M., & Kustar, A. (2024). Restoration of the Kham River Is Reviving a Cultural Legacy. *World Resources Institute (WRI)*.
-- WRI Ross Center Prize for Cities. (2023-2024). *Kham River Restoration Initiative Finalist Case Study*.
-- Yale Hixon Center for Urban Sustainability. *Kham River Restoration in Aurangabad Practitioner Case Study*.
+- WRI Ross Center Prize for Cities. (2023–2024). *Kham River Restoration Initiative Finalist Case Study*.
